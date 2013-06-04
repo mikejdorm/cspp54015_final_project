@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ivy-report.xsl"?>
+<ivy-report version="1.0">
+	<info
+		organisation="cspp_rest_service"
+		module="cspp_rest_service_2.9.1"
+		revision="1.0"
+		conf="test-internal"
+		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, container"
+		date="20130601205006"/>
+	<dependencies>
+		<module organisation="org.eclipse.jetty.orbit" name="javax.servlet">
+			<revision name="3.0.0.v201112011016" status="release" pubdate="20111207134915" resolver="public" artresolver="public" homepage="" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="5">
+				<metadata-artifact status="no" details="" size="3070" time="0" location="/Users/michaeldorman/.ivy2/cache/org.eclipse.jetty.orbit/javax.servlet/ivy-3.0.0.v201112011016.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/eclipse/jetty/orbit/javax.servlet/3.0.0.v201112011016/javax.servlet-3.0.0.v201112011016.pom"/>
+				<caller organisation="cspp_rest_service" name="cspp_rest_service_2.9.1" conf="test-internal, test, optional, compile, runtime, provided" rev="3.0.0.v201112011016" rev-constraint-default="3.0.0.v201112011016" rev-constraint-dynamic="3.0.0.v201112011016" callerrev="1.0"/>
+				<artifacts>
+					<artifact name="javax.servlet" type="jar" ext="jar" status="no" details="" size="200387" time="0" location="/Users/michaeldorman/.ivy2/cache/org.eclipse.jetty.orbit/javax.servlet/jars/javax.servlet-3.0.0.v201112011016.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/eclipse/jetty/orbit/javax.servlet/3.0.0.v201112011016/javax.servlet-3.0.0.v201112011016.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.codahale" name="jerkson_2.9.1">
+			<revision name="0.5.0" status="release" pubdate="20130506065032" resolver="Typesafe Repository" artresolver="Typesafe Repository" homepage="" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="2">
+				<license name="The MIT License" url="http://codahale.com/mit.txt"/>
+				<metadata-artifact status="no" details="" size="3329" time="0" location="/Users/michaeldorman/.ivy2/cache/com.codahale/jerkson_2.9.1/ivy-0.5.0.xml" searched="false" origin-is-local="false" origin-location="http://repo.typesafe.com/typesafe/releases/com/codahale/jerkson_2.9.1/0.5.0/jerkson_2.9.1-0.5.0.pom"/>
+				<caller organisation="cspp_rest_service" name="cspp_rest_service_2.9.1" conf="test-internal, test, optional, compile, provided, runtime" rev="0.5.0" rev-constraint-default="0.5.0" rev-constraint-dynamic="0.5.0" callerrev="1.0"/>
+				<artifacts>
+					<artifact name="jerkson_2.9.1" type="jar" ext="jar" status="no" details="" size="741139" time="0" location="/Users/michaeldorman/.ivy2/cache/com.codahale/jerkson_2.9.1/jars/jerkson_2.9.1-0.5.0.jar">
+						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/codahale/jerkson_2.9.1/0.5.0/jerkson_2.9.1-0.5.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.codehaus.jackson" name="jackson-mapper-asl">
+			<revision name="1.9.12" status="release" pubdate="20130129094727" resolver="public" artresolver="public" homepage="http://jackson.codehaus.org" downloaded="false" searched="true" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="4">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2655" time="0" location="/Users/michaeldorman/.ivy2/cache/org.codehaus.jackson/jackson-mapper-asl/ivy-1.9.12.xml" searched="true" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/codehaus/jackson/jackson-mapper-asl/1.9.12/jackson-mapper-asl-1.9.12.pom"/>
+				<caller organisation="com.codahale" name="jerkson_2.9.1" conf="default, compile, runtime, master" rev="[1.9.0,2.0.0)" rev-constraint-default="[1.9.0,2.0.0)" rev-constraint-dynamic="[1.9.0,2.0.0)" callerrev="0.5.0"/>
+				<artifacts>
+					<artifact name="jackson-mapper-asl" type="jar" ext="jar" status="no" details="" size="780385" time="0" location="/Users/michaeldorman/.ivy2/cache/org.codehaus.jackson/jackson-mapper-asl/jars/jackson-mapper-asl-1.9.12.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/codehaus/jackson/jackson-mapper-asl/1.9.12/jackson-mapper-asl-1.9.12.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.codehaus.jackson" name="jackson-core-asl">
+			<revision name="1.9.12" status="release" pubdate="20130129094708" resolver="public" artresolver="public" homepage="http://jackson.codehaus.org" downloaded="false" searched="true" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="3">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2438" time="0" location="/Users/michaeldorman/.ivy2/cache/org.codehaus.jackson/jackson-core-asl/ivy-1.9.12.xml" searched="true" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/codehaus/jackson/jackson-core-asl/1.9.12/jackson-core-asl-1.9.12.pom"/>
+				<caller organisation="org.codehaus.jackson" name="jackson-mapper-asl" conf="compile, runtime" rev="1.9.12" rev-constraint-default="1.9.12" rev-constraint-dynamic="1.9.12" callerrev="1.9.12"/>
+				<caller organisation="com.codahale" name="jerkson_2.9.1" conf="default, compile, runtime, master" rev="[1.9.0,2.0.0)" rev-constraint-default="[1.9.0,2.0.0)" rev-constraint-dynamic="[1.9.0,2.0.0)" callerrev="0.5.0"/>
+				<artifacts>
+					<artifact name="jackson-core-asl" type="jar" ext="jar" status="no" details="" size="232245" time="0" location="/Users/michaeldorman/.ivy2/cache/org.codehaus.jackson/jackson-core-asl/jars/jackson-core-asl-1.9.12.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/codehaus/jackson/jackson-core-asl/1.9.12/jackson-core-asl-1.9.12.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.akka" name="akka-actor">
+			<revision name="2.0.1" status="release" pubdate="20130506064223" resolver="Typesafe Repository" artresolver="Typesafe Repository" homepage="http://akka.io" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="1">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2498" time="0" location="/Users/michaeldorman/.ivy2/cache/com.typesafe.akka/akka-actor/ivy-2.0.1.xml" searched="false" origin-is-local="false" origin-location="http://repo.typesafe.com/typesafe/releases/com/typesafe/akka/akka-actor/2.0.1/akka-actor-2.0.1.pom"/>
+				<caller organisation="cspp_rest_service" name="cspp_rest_service_2.9.1" conf="test-internal, test, optional, compile, provided, runtime" rev="2.0.1" rev-constraint-default="2.0.1" rev-constraint-dynamic="2.0.1" callerrev="1.0"/>
+				<artifacts>
+					<artifact name="akka-actor" type="jar" ext="jar" status="no" details="" size="1841418" time="0" location="/Users/michaeldorman/.ivy2/cache/com.typesafe.akka/akka-actor/jars/akka-actor-2.0.1.jar">
+						<origin-location is-local="false" location="http://repo.typesafe.com/typesafe/releases/com/typesafe/akka/akka-actor/2.0.1/akka-actor-2.0.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scala-library">
+			<revision name="2.9.1" status="release" pubdate="20110831033953" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, master(*), compile(*), runtime, runtime(*), master" position="0">
+				<license name="BSD-like" url="http://www.scala-lang.org/downloads/license.html          "/>
+				<metadata-artifact status="no" details="" size="2322" time="0" location="/Users/michaeldorman/.ivy2/cache/org.scala-lang/scala-library/ivy-2.9.1.xml" searched="false" origin-is-local="false" origin-location="https://oss.sonatype.org/content/repositories/releases/org/scala-lang/scala-library/2.9.1/scala-library-2.9.1.pom"/>
+				<caller organisation="com.typesafe.akka" name="akka-actor" conf="default, compile, runtime, master" rev="2.9.1" rev-constraint-default="2.9.1" rev-constraint-dynamic="2.9.1-1" callerrev="2.0.1"/>
+				<caller organisation="cspp_rest_service" name="cspp_rest_service_2.9.1" conf="test-internal, test, optional, compile, provided, runtime" rev="2.9.1" rev-constraint-default="2.9.1" rev-constraint-dynamic="2.9.1" callerrev="1.0"/>
+				<caller organisation="com.codahale" name="jerkson_2.9.1" conf="default, compile, runtime, master" rev="2.9.1" rev-constraint-default="2.9.1" rev-constraint-dynamic="2.9.1" callerrev="0.5.0"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+	</dependencies>
+</ivy-report>
