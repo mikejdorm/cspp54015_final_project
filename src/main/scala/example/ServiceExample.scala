@@ -1,7 +1,12 @@
 package example
 import servlet._
+//import org.json4s._
+//import org.json4s.native.JsonMethods._
+
+//import reflect.{ClassDescriptor, Reflector}
+//import org.json4s._
 import org.json4s._
-import org.json4s.native.JsonMethods._
+import org.json4s.jackson.JsonMethods._ 
 
 /*
  * Below are two simple examples of a web service using the library
@@ -35,40 +40,54 @@ import org.json4s.native.JsonMethods._
  */
 object ServiceExample{
 
-	case class Salutation(val value:String) extends CrudHelperClass with JsonSerializable
-	object Salutation extends CrudHelperObject[Salutation]{
-	  create(new Salutation("hello"))
-	  create(new Salutation("hi"))
-	  create(new Salutation("hola"))
-	  create(new Salutation("bonjour"))
-	  RequestHandler.defineHandler(crudDefaultHandler(Seq("api"):+"salutation"))
-	  RequestHandler.defineHandler(defineCustomHandler(Seq("api"):+"salutation":+"custom"))
-	  
-	  def defineCustomHandler(Prefix:Seq[String]): 
-		  PartialFunction[HttpRequest, ()=>Option[HttpResponse]] = {
-		    case req: HttpRequest => req.context match{
-		  		case HttpContext(Prefix:+x, Get) => ()=>customHandler(req)
-		    }
-		    case _ => ()=> Some(new HttpErrorResponse("Item not found"))
+	  def asyncHandler(req:HttpRequest):Option[HttpResponse] = {
+			  for(i <- 1 to 10){
+			    println(i)
+			    Thread.sleep(1000)
+			  }
+			  Some(new HttpOkResponse(
+					  Person.read(0) match{
+					    case Some(person) => JsonUtils.anyToJValue(person)
+					    case None => "No person"
+					  }
+			    )
+			)
 	  }
 	  
-	  def workerFunction(req:HttpRequest):Option[HttpResponse] = {
-	    None
-	  }
+	case class Person(name:String, age:Int, location:String) extends CrudHelperClass
+	object Person extends CrudHelperObject[ServiceExample.Person] with JsonSerializable[ServiceExample.Person]{	  
+	      create(new Person("Michael", 29, "Chicago"))
+	      create(new Person("Rachel", 30, "Chicago"))     
+	   
+	      override def update(str:String):Option[Person] = fromJson(str) 
+	      override def fromJson(json:String):Option[Person] = {
+	      try{
+	    	 Some(parse(json).extract[ServiceExample.Person])
+	       } 
+	       catch{
+	       		case e: Exception => {
+	       		  println("Error parsing json")
+	       		  None
+	       		}
+	       }
+	     }
+	     override def create(str:String):Option[Person] = {
+	      println("Creating object... with " + str)
+	      fromJson(str) match {
+	     
+	       case Some(person) => {
+	         create(person) 
+	         Some(person)
+	       }
+	       case None => None
+	     } 	 
+	     }
+	     RequestHandler.defineHandler(crudDefaultHandler(Seq("api"):+"person"))
+	     RequestHandler.defineHandler(AsyncHandler.registerHandler(Seq("api"):+"async", Get, asyncHandler))
 	  
-	  def customHandler(req:HttpRequest):Option[HttpResponse] = {
-	    AsyncHandler.createJob(req, workerFunction)
-	    Some(new HttpAcceptProcessingResponse("Accepted"))
-	  }
 	}
 	
-	case class Valediction(val value:String) extends CrudHelperClass
-	object Valediction extends CrudHelperObject[Valediction]{
-	  create(new Valediction("goodbye"))
-	  create(new Valediction("farwell"))
-	  create(new Valediction("adios"))
-	  create(new Valediction("hasta luego"))
-	  create(new Valediction("later"))
-	  RequestHandler.defineHandler(crudDefaultHandler(Seq("api"):+"valediction"))
-	}
+
 }
+
+	

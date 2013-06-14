@@ -43,11 +43,15 @@ import javax.servlet.http.HttpServletResponse._
 object RequestHandler{
     type Handler = PartialFunction[HttpRequest, Option[HttpResponse]]
     @volatile private var handlers: List[Handler] = Nil
-    def defineHandler(handler:Handler) = handlers ::=handler
+    def defineHandler(handler:Handler) ={
+       println("Adding handler: " + handler)
+       handlers ::=handler
+    }
     def getNumberOfHandlers:Int = handlers.size
     def getHandlers:List[Handler] = handlers
     def dispatch(req:HttpRequest) = {
-      handlers.foreach(h => 
+      handlers.foreach(h => {
+      println("Checking " + h + " with req " + req)
     	  		h.apply(req) match{
 	    	  		case Some(x) => x match{ 
 		    	  	  case a: HttpAcceptProcessingResponse => {
@@ -62,13 +66,14 @@ object RequestHandler{
 		    	  	      req.res.setStatus(SC_OK)
 		    	  	      req.res.getOutputStream().print(o.body)
 		    	  	  }
-		    	  	  case _ =>
+		    	  	  case _ => None
 		    	  	}
 		    	  	case None => {
-		    	  	   req.res.setStatus(SC_BAD_REQUEST)
-		    	  	   req.res.getOutputStream().print("Invalid Request")
+		    	  	  // req.res.setStatus(SC_BAD_REQUEST)
+		    	  	  // req.res.getOutputStream().print("Invalid Request")
 		    	  	}
     	  		}
+      }
     		  )
       }
 }

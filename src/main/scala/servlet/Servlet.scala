@@ -9,8 +9,8 @@ import example._
 class Servlet extends HttpServlet {
 
 	  override def service(req: HttpServletRequest, resp: HttpServletResponse) ={
-			ServiceExample.Salutation
-			ServiceExample.Valediction
+
+			ServiceExample.Person
 			System.out.println("Handlers" + RequestHandler.getNumberOfHandlers)
 			val request = new HttpRequest(req,resp)
 			RequestHandler.dispatch(request)

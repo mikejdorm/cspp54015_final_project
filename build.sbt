@@ -23,8 +23,8 @@ libraryDependencies ++= Seq(
     "org.eclipse.jetty"         % "jetty-webapp"    % "8.1.5.v20120716"     % "container"
 )
 
-libraryDependencies += "com.typesafe.akka" % "akka-actor" % "2.0.1"
-
+libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.1.4"
+  
 resolvers += "repo.codahale.com" at "http://repo.codahale.com"
  
 libraryDependencies += "com.codahale" % "jerkson_2.9.1" % "0.5.0"

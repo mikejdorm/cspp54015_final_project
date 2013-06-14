@@ -54,8 +54,9 @@ def delete(id:String):Option[X] =
 
 def delete(id:Int):Option[X] = {
   if(items.contains(id)){
+    println("Deleting from list")
 	  val deletion = items(id)
-	  items.-(id)
+	  items.-=(id)
 	  Some(deletion)
   }
   else
@@ -69,16 +70,18 @@ def create(x:X) = {
   x.id = items.size
   items.+=(x._id->x)
 }
-def create(str:String):Option[X] = {
-   None
-}
-
+/*
+ * Create a value given the string
+ * arg received in the post message. 
+ * This needs to be implemented by the
+ * class impl of the crud helper class.
+ */
+def create(str:String):Option[X] 
 /*
  * update an existing object
  */
-def update(str:String):Option[X] = {
-  None
-}
+def update(str:String):Option[X] 
+  
 def update(id:Int, x:X):Option[X] = {
 		items.get(id).map(f => x)
 }
@@ -110,7 +113,7 @@ def crudDefaultHandler(Prefix:Seq[String]):
 			    case HttpContext(Prefix:+x, Delete) => wrapResponse(delete(x))
 			    case HttpContext(Prefix:+x, Get) => wrapResponse(read(x))
 			    case HttpContext(Prefix, Get) => wrapResponse(read())
-			    case HttpContext(Prefix:+y, Post) => wrapResponse(create(y))
+			    case HttpContext(Prefix, Post) => wrapResponse(create(a.body))
 			    case HttpContext(Prefix:+y, Put) => wrapResponse(update(y))
 			    case _ => wrapResponse(None)
 		 }
@@ -134,7 +137,10 @@ def wrapResponse(elems:List[X]):Option[HttpResponse] = {
 def wrapResponse(opt:Option[X]):Option[HttpResponse] = {
     println("Wrapping response: " + opt)
 	  opt match{
-	  case Some(x) => Some(new HttpOkResponse(JsonUtils.anyToJValue(x).toString))
+	  case Some(x) => {
+	    
+	    Some(new HttpOkResponse(JsonUtils.anyToJValue(x).toString))
+	  }
 	  case None => Some(new HttpErrorResponse("Item not found"))
 	}
 }

@@ -1,5 +1,6 @@
 package servlet
 import javax.servlet.http._
+import scala.io._
 
 trait Request{
   val req:HttpServletRequest
@@ -8,6 +9,9 @@ trait Request{
   def pathInfo = req.getPathInfo()
   def requestType = req.getAuthType()
   def method = req.getMethod()
+  def body:String = 
+    Source.fromInputStream(req.getInputStream()).getLines().mkString("\n")
+  
   val context:HttpContext =new HttpContext(splitPath(req.getRequestURI()), getHttpMethod(req.getMethod()))
   
   def getHttpMethod(method:String):HttpRequestType = method.toUpperCase() match{
@@ -18,6 +22,7 @@ trait Request{
     case _ =>  Unknown
   }
   def splitPath(path:String):List[String] = path.split("/").filter(_ != "").toList
+  override def toString:String = pathInfo + " " + method
 }
 
 class HttpRequest(val req:HttpServletRequest, val res:HttpServletResponse) extends Request
